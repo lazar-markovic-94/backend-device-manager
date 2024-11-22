@@ -3,6 +3,7 @@ package com.lazarmarkovic.persistence.dao;
 import com.lazarmarkovic.domain.entity.Holder;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+
 import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
@@ -43,36 +44,36 @@ public class HolderDao {
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public Date getBirthday() {
         return birthday;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setBirthday(Date birthday) {
@@ -84,11 +85,7 @@ public class HolderDao {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HolderDao holderDao = (HolderDao) o;
-        return Objects.equals(uuid, holderDao.uuid) &&
-                Objects.equals(firstName, holderDao.firstName) &&
-                Objects.equals(lastName, holderDao.lastName) &&
-                Objects.equals(address, holderDao.address) &&
-                Objects.equals(birthday, holderDao.birthday);
+        return Objects.equals(uuid, holderDao.uuid) && Objects.equals(firstName, holderDao.firstName) && Objects.equals(lastName, holderDao.lastName) && Objects.equals(address, holderDao.address) && Objects.equals(birthday, holderDao.birthday);
     }
 
     @Override

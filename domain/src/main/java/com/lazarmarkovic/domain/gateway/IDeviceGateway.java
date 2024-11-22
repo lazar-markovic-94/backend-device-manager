@@ -1,6 +1,7 @@
 package com.lazarmarkovic.domain.gateway;
 
 import com.lazarmarkovic.domain.entity.Device;
+
 import java.util.UUID;
 
 public interface IDeviceGateway {

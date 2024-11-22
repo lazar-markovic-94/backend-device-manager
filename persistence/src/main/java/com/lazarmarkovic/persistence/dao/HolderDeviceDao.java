@@ -17,44 +17,42 @@ public class HolderDeviceDao {
     @Column(name = "uuid")
     private UUID uuid;
 
-    @JoinColumn(name = "uuid")
-    @ManyToOne
-    private HolderDao holder;
+    @Column(name = "holder_uuid")
+    private UUID holderUuid;
 
-    @JoinColumn(name = "uuid")
-    @OneToOne
-    private DeviceDao device;
+    @Column(name = "device_uuid")
+    private UUID deviceUuid;
 
     protected HolderDeviceDao(){}
 
-    public HolderDeviceDao(UUID uuid, HolderDao holder, DeviceDao device) {
+    public HolderDeviceDao(UUID uuid, UUID holderUuid, UUID deviceUuid) {
         this.uuid = uuid;
-        this.holder = holder;
-        this.device = device;
+        this.holderUuid = holderUuid;
+        this.deviceUuid = deviceUuid;
     }
 
     public UUID getUuid() {
         return uuid;
     }
 
-    public HolderDao getHolder() {
-        return holder;
-    }
-
-    public DeviceDao getDevice() {
-        return device;
-    }
-
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 
-    public void setHolder(HolderDao holder) {
-        this.holder = holder;
+    public UUID getHolderUuid() {
+        return holderUuid;
     }
 
-    public void setDevice(DeviceDao device) {
-        this.device = device;
+    public void setHolderUuid(UUID holderUuid) {
+        this.holderUuid = holderUuid;
+    }
+
+    public UUID getDeviceUuid() {
+        return deviceUuid;
+    }
+
+    public void setDeviceUuid(UUID deviceUuid) {
+        this.deviceUuid = deviceUuid;
     }
 
     @Override
@@ -62,19 +60,19 @@ public class HolderDeviceDao {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HolderDeviceDao that = (HolderDeviceDao) o;
-        return Objects.equals(uuid, that.uuid) && Objects.equals(holder, that.holder) && Objects.equals(device, that.device);
+        return Objects.equals(uuid, that.uuid) && Objects.equals(holderUuid, that.holderUuid) && Objects.equals(deviceUuid, that.deviceUuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, holder, device);
+        return Objects.hash(uuid, holderUuid, deviceUuid);
     }
 
     public HolderDevice toDomain() {
         return new HolderDevice(
             uuid,
-            holder.toDomain(),
-            device.toDomain()
+            holderUuid,
+            deviceUuid
         );
     }
 }

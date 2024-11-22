@@ -2,7 +2,7 @@ package com.lazarmarkovic.usecase;
 
 import com.lazarmarkovic.domain.entity.Device;
 
-public interface ISaveDeviceUseCase {
+public interface ICreateDeviceUseCase {
 
     Device invoke(Device device);
 }

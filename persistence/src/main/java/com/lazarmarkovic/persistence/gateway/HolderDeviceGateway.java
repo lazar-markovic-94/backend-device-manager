@@ -27,11 +27,11 @@ public class HolderDeviceGateway implements IHolderDeviceGateway {
 
     @Override
     public List<HolderDevice> findByHolderUuid(UUID uuid) {
-        return holderDeviceRepository.findByHolder_Uuid(uuid).stream().map(HolderDeviceDao::toDomain).toList();
+        return holderDeviceRepository.findByHolderUuid(uuid).stream().map(HolderDeviceDao::toDomain).toList();
     }
 
     @Override
     public HolderDevice findByDeviceUuid(UUID uuid) {
-        return holderDeviceRepository.findByDevice_Uuid(uuid).toDomain();
+        return holderDeviceRepository.findByDeviceUuid(uuid).map(HolderDeviceDao::toDomain).orElse(null);
     }
 }
