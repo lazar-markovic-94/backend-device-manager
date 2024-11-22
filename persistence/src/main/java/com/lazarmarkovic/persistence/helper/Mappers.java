@@ -34,8 +34,8 @@ public class Mappers {
     public static HolderDeviceDao toHolderDeviceDao(HolderDevice holderDevice) {
         return new HolderDeviceDao(
                 holderDevice.uuid(),
-                toHolderDao(holderDevice.holder()),
-                toDeviceDao(holderDevice.device())
+                holderDevice.holderUuid(),
+                holderDevice.deviceUuid()
         );
     }
 }

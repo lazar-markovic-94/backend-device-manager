@@ -2,6 +2,7 @@ package com.lazarmarkovic.persistence.gateway;
 
 import com.lazarmarkovic.domain.entity.Holder;
 import com.lazarmarkovic.domain.gateway.IHolderGateway;
+import com.lazarmarkovic.persistence.dao.HolderDao;
 import com.lazarmarkovic.persistence.helper.Mappers;
 import com.lazarmarkovic.persistence.repository.HolderRepository;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ public class HolderGateway implements IHolderGateway {
 
     @Override
     public Holder findByUuid(UUID uuid) {
-        return holderRepository.findByUuid(uuid).toDomain();
+        return holderRepository.findByUuid(uuid).map(HolderDao::toDomain).orElse(null);
     }
 
     @Override

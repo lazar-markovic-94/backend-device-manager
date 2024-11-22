@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
@@ -41,7 +42,7 @@ public class DeviceGatewayTests {
     @Test
     public void testFindByUuid() {
 
-        when(deviceRepository.findByUuid(uuid)).thenReturn(deviceDao);
+        when(deviceRepository.findByUuid(uuid)).thenReturn(Optional.of(deviceDao));
 
         Device device = deviceGateway.findByUuid(uuid);
 
@@ -53,7 +54,7 @@ public class DeviceGatewayTests {
     @Test
     public void testFindBySerialNumber() {
 
-        when(deviceRepository.findBySerialNumber(serialNumber)).thenReturn(deviceDao);
+        when(deviceRepository.findBySerialNumber(serialNumber)).thenReturn(Optional.of(deviceDao));
 
         Device device = deviceGateway.findBySerialNumber(serialNumber);
 

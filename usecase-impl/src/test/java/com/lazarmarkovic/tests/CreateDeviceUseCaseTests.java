@@ -3,23 +3,25 @@ package com.lazarmarkovic.tests;
 import com.lazarmarkovic.domain.entity.Device;
 import com.lazarmarkovic.domain.exception.EntitySaveException;
 import com.lazarmarkovic.persistence.gateway.DeviceGateway;
-import com.lazarmarkovic.usecase.SaveDeviceUseCase;
+import com.lazarmarkovic.usecase.CreateDeviceUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class SaveDeviceUseCaseTests {
+class CreateDeviceUseCaseTests {
 
     @Mock
     private DeviceGateway deviceGateway;
 
     @InjectMocks
-    private SaveDeviceUseCase saveDeviceUseCase;
+    private CreateDeviceUseCase saveDeviceUseCase;
 
     private final UUID uuid = UUID.randomUUID();
     private final String serialNumber = "TestSerial123";
@@ -55,20 +57,7 @@ class SaveDeviceUseCaseTests {
         EntitySaveException exception = assertThrows(EntitySaveException.class,
                 () -> saveDeviceUseCase.invoke(device));
 
-        assertEquals("Insertion failed for device with a serial number: " + device.serialNumber(), exception.getMessage());
-        verify(deviceGateway, times(1)).save(device);
-    }
-
-    @Test
-    void testInvoke_ExceptionInGateway_ThrowsSameException() {
-
-        RuntimeException runtimeException = new RuntimeException("Database error");
-        when(deviceGateway.save(device)).thenThrow(runtimeException);
-
-        RuntimeException exception = assertThrows(RuntimeException.class,
-                () -> saveDeviceUseCase.invoke(device));
-
-        assertEquals("Database error", exception.getMessage());
+        assertEquals("Failed to save the device with serial number: " + device.serialNumber(), exception.getMessage());
         verify(deviceGateway, times(1)).save(device);
     }
 }

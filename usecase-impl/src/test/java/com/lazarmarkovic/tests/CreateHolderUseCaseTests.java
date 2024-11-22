@@ -3,7 +3,7 @@ package com.lazarmarkovic.tests;
 import com.lazarmarkovic.domain.entity.Holder;
 import com.lazarmarkovic.domain.exception.EntitySaveException;
 import com.lazarmarkovic.persistence.gateway.HolderGateway;
-import com.lazarmarkovic.usecase.SaveHolderUseCase;
+import com.lazarmarkovic.usecase.CreateHolderUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -15,13 +15,13 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class SaveHolderUseCaseTests {
+class CreateHolderUseCaseTests {
 
     @Mock
     private HolderGateway holderGateway;
 
     @InjectMocks
-    private SaveHolderUseCase saveHolderUseCase;
+    private CreateHolderUseCase saveHolderUseCase;
 
     private final UUID uuid = UUID.randomUUID();
 

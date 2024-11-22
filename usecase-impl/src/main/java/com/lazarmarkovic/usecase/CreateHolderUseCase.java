@@ -8,13 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SaveHolderUseCase implements ISaveHolderUseCase {
+public class CreateHolderUseCase implements ICreateHolderUseCase {
 
-    private static final Logger logger = LoggerFactory.getLogger(SaveHolderUseCase.class);
+    private static final Logger logger = LoggerFactory.getLogger(CreateHolderUseCase.class);
 
     private final HolderGateway holderGateway;
 
-    public SaveHolderUseCase(HolderGateway holderGateway) {
+    public CreateHolderUseCase(HolderGateway holderGateway) {
         this.holderGateway = holderGateway;
     }
 
@@ -27,7 +27,7 @@ public class SaveHolderUseCase implements ISaveHolderUseCase {
                 throw new EntitySaveException("Failed to save holder with uuid: " + holder.uuid());
             }
 
-            return holder;
+            return savedHolder;
         } catch (Exception ex) {
             logger.error("Failed to save holder with uuid: " + holder.uuid(), ex);
             throw ex;

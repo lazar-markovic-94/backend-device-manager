@@ -4,6 +4,7 @@ package com.lazarmarkovic.persistence.dao;
 import com.lazarmarkovic.domain.entity.Device;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+
 import java.util.Objects;
 import java.util.UUID;
 

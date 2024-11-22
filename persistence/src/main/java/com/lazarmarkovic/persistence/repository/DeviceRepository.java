@@ -4,12 +4,13 @@ import com.lazarmarkovic.persistence.dao.DeviceDao;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface DeviceRepository extends CrudRepository<DeviceDao, UUID> {
 
-    DeviceDao findByUuid(UUID uuid);
+    Optional<DeviceDao> findByUuid(UUID uuid);
 
-    DeviceDao findBySerialNumber(String serialNumber);
+    Optional<DeviceDao> findBySerialNumber(String serialNumber);
 }

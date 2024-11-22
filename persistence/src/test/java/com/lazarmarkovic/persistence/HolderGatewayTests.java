@@ -9,7 +9,10 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import java.util.Optional;
 import java.util.UUID;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
@@ -40,7 +43,7 @@ public class HolderGatewayTests {
     @Test
     public void testFindByUuid() {
 
-        when(holderRepository.findByUuid(uuid)).thenReturn(holderDao);
+        when(holderRepository.findByUuid(uuid)).thenReturn(Optional.of(holderDao));
 
         Holder holder = holderGateway.findByUuid(uuid);
 
